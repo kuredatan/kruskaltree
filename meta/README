@@ -1,3 +1,7 @@
-- Info.csv : les métadonnées pour les échantillons
-- MGAcount_complete.csv : la matrice de comptage pour chaque échantillon
--GGdb2015.tree : l'arbre GreenGenes remis à plat
+- Info.csv: metadata for the samples
+- MGAcount_complete.csv: the occurrence matrix for each sample
+- GGdb2015.tree: the whole taxonomic tree from GreenGenes
+- test.tree: a reduced taxonomic tree for tests.
+
+/!\ Some samples are in the occurrence matrix and not in the data matrix!
+/!\ Some nodes are in the tree but not in the data matrix!
