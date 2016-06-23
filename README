@@ -1,0 +1,56 @@
+*** Use main.py to interact with the program
+
+Comparison of taxonomic trees induced by group of samples.
+
+**** Algorithm to get the most different pairs of (groups of) patients:
+
+- Choose a metadatum such as its values can induce a partition of the set of samples
+(Or only select groups of samples by their names)
+
+- Construct the complete graph of these trees where edges are weighted by a certain comparison function (Zhang-Shasha's algorithm, total ratio of nodes, ...)
+
+- Apply Kruskal's algorithm on this graph to obtain the minimal covering tree
+
+- Store distances in a matrix and select the pairs of groups de patients that are the most different (which distance is superior to the third quartile of the distances)
+
+**** Files:
+- actions.py
+
+- comparisonFunctions.py
+Implementation of comparison functions.
+
+- distanceFunctions.py
+Implementation of distance functions.
+
+- /files
+Storing results.
+
+- graph.py
+Implementation of graph (of the trees).
+
+- kruskal.py
+Implementation of Kruskal's algorithm.
+
+- main.py
+Interface with the user.
+
+- /meta
+Contains metadata.
+
+- misc.py
+Useful functions.
+
+- parsingInfo.py
+Parses the data matrix.
+
+- parsingMatrix.py
+Parses the occurrence matrix.
+
+- parsingTree.py
+Parses the taxonomic tree.
+
+- taxoTree.py
+Implementation of the taxonomic tree.
+
+- writeOnFiles.py
+Self-explanatory.
