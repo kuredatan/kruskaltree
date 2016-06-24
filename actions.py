@@ -160,18 +160,23 @@ def runAct(dataArray):
     print "Choosing the list of samples."
     #or use partition by metadatum values
     sampleNameList,metadataList,interval1List,interval2List = createSampleNameList(dataArray)
+    n = len(sampleNameList)
+    print "\nAVAILABLE COMPARISON FUNCTION(S):"
     fctF = printComparison()
-    f = raw_input("Choosing your comparison function.\n")
+    f = raw_input("\nChoose your comparison function above those printed above.\n")
     isInDatabase([f],fctF)
-    completeGraph = Graph(1).constructComplete(sampleNameList,dataArray[7],f)
+    completeGraph = Graph(n).constructComplete(sampleNameList,dataArray[7],f)
     superTree,w = kruskal(completeGraph)
-    n = len(superTree.vertices)
     #Constructing distance matrix
     matrix = np.zeros((n,n))
+    print "\nAVAILABLE DISTANCE FUNCTION(S):"
     fctD = printDistance()
-    d = raw_input("Choosing your distance function.\n")
+    d = raw_input("\nChoose your distance function above those printed above.\n")
     isInDatabase([d],fctD)
     valueArray = []
+    print "\nSUPERTREE of weight:",w
+    print superTree.vertices
+    print superTree.edges
     for i in range(n):
         for j in range(i,n):
             #matrix is symmetric (distance)
@@ -184,15 +189,19 @@ def runAct(dataArray):
     quartile3 = valueNumber*3/4
     valueQuartile = valueArray[quartile3]
     mostDifferent = []
+    #Distance is symmetric
     for i in range(n):
-        for j in range(i,n):
+        for j in range(i+1,n):
             if matrix[i][j] >= valueQuartile:
                 mostDifferent.append((sampleNameList[i],sampleNameList[j]))
-    print "Most different samples groups from:"
+    print "\nRESULTING MATRIX:"
+    print matrix
+    print "\n---\nMost different samples groups from:\n"
     for sampleGroup in sampleNameList:
         print sampleGroup
-    print "are:"
+    print "\nare:\n"
     print mostDifferent
+    print "\n--- END OF DISPLAY\n"
 
 #____________________________________________________________________________
 

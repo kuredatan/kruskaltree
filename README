@@ -12,6 +12,7 @@ Comparison of taxonomic trees induced by group of samples.
 - Apply Kruskal's algorithm on this graph to obtain the minimal covering tree
 
 - Store distances in a matrix and select the pairs of groups de patients that are the most different (which distance is superior to the third quartile of the distances)
+(Default distance is LCA-path-length difference)
 
 **** Files:
 - actions.py

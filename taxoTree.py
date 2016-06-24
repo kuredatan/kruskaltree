@@ -213,6 +213,12 @@ class TaxoTree(object):
                 nodeList = child.children + nodeList
             else:
                 nodeList = nodeList + child.children
+    #
+    #
+    #Only adding a child to the current root @self
+    def addChild(self,child):
+        self.children.append(TaxoTree(child.name,child.rank,child.ident,child.sampleHitList,child.lineage,[],child.paths))
+        return self
 
 def printTree(tree,sampleOn=False):
     print "ROOT"

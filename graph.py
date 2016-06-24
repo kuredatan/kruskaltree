@@ -2,7 +2,6 @@
 #Stores trees as integers (hashArray[i] is the unique tree associated to integer i) and edges as 3-ples of integers (first node, second node,distance)
 #For superTree (tree of all trees obtained with Kruskal's algorithm) root will be chosen arbitrarily
 
-from taxoTree import TaxoTree
 from comparisonFunctions import applyFctC
 
 class Graph(object):
@@ -24,13 +23,14 @@ class Graph(object):
         self.hashArray = hashArray
         self.vertices = [i for i in range(n)]
         #The orientation of the graph depends on f
-        self.edges = [(i,j, applyFctC(f,self.hashArray[i],self.hashArray[j])) for i in range(n) for j in range(n) if not (j == i)]
+        self.edges = [(i,j, applyFctC(f,tree,self.hashArray[i],self.hashArray[j])) for i in range(n) for j in range(n) if not (j == i)]
         return self
     #
     #
     #When Kruskal's algorithm is applied to the complete graph, one creates a new graph, at first empty, to which edges are added one by one
     #completeHashArray is the hashArray of the complete graph
-    def addVertex(self,completeHashArray,edge):
+    #We suppose all vertices are already in @self.vertices
+    def addEdge(self,completeHashArray,edge):
         i,j,w = edge
         n = len(completeHashArray)
         #Allows to get the trees in growing order of the hash integers
@@ -42,6 +42,5 @@ class Graph(object):
             else:
                 newHash.append(None)
         self.hashArray = newHash
-        self.vertices = [i for i in range(n) if not self.hashArray[i]]
         self.edges.append(edge)
         return self

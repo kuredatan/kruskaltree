@@ -51,16 +51,15 @@ def compare(e1,e2):
 
 def kruskal(graph):
     n = len(graph.vertices) + 1
-    superTree = Graph(n-1)
+    superTree = Graph(n-1,graph.vertices)
     sortedEdges = sorted(graph.edges,key = lambda e: e[2])
-    n = len(graph.vertices) + 1
     fathers,ranks = initUnionFind(n)
     weight = 0
     for (i,j,w) in sortedEdges:
         fathers,ranks,boolean = union(fathers,ranks,i,j)
         if boolean:
             weight += w
-            superTree = superTree.addVertex(graph.hashArray,(i,j,w))
+            superTree = superTree.addEdge(graph.hashArray,(i,j,w))
     return (superTree,weight)
 
 
